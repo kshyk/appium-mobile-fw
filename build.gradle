@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+}
+
+group 'io.kshyk'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'idea'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+    testImplementation "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
+    implementation 'com.codeborne:selenide-appium:2.7.1'
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    implementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    implementation "io.rest-assured:json-schema-validator:$restAssuredVersion"
+    implementation 'ch.qos.logback:logback-classic:1.4.5'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    // OpenAPI Generation Dependencies
+    implementation 'org.awaitility:awaitility:4.2.0'
+}
